@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+
+		body {
+
+			font-family: Verdana, Geneva, sans-serif;
+		}
+
+		#box {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			display:none;
+			position:relative;
+		}
+
+	</style>
+</head>
+<body>
+
+	<p> Your time: <span id = "time"></span></p>
+
+	<div id = "box" onclick = "myFunction()"></div>
+
+	<script type = "text/javascript">
+
+	//Start: 1970 
+	var clickedTime; 
+	var createdTime;
+	var reactionTime;
+
+	function makebox() {
+
+		var time = Math.random() * 5000;
+
+		setTimeout(function(){
+
+		var shape = Math.random();	
+		alert(shape);
+
+		if( shape > 0.5) {
+			document.getElementById("box").style.borderRadius = "100px";
+		}
+		else
+			document.getElementById("box").style.borderRadius = "0";
+
+		var top = Math.random();
+
+		top = top * 300;
+
+		var left = Math.random();
+
+		left = left * 500;
+
+		document.getElementById("box").style.top = top + "px";
+
+		document.getElementById("box").style.left = left + "px";
+
+		document.getElementById("box").style.display = "block";
+
+		document.getElementById("box").style.backgroundColor = getRandomColor();
+
+		createdTime = Date.now();
+
+		}, time);
+
+	}
+
+	function getRandomColor() {
+
+		var colorCode = '0123456789ABCEDF'.split('');
+		var color = '#';
+		for( var i = 0; i < 6; i++){
+			color += colorCode[Math.floor(Math.random() * 15 )];
+		}
+		return color;
+	}
+
+	//alert(getRandomColor());
+
+	function myFunction() {
+
+		clickedTime = Date.now();
+
+		reactionTime = (clickedTime - createdTime)/1000;
+
+		document.getElementById("time").innerHTML = reactionTime;
+
+	    document.getElementById("box").style.display = "none";
+
+	    makebox();
+	}
+
+	makebox();
+	getRandomColor();
+
+		//var x = Math.floor((Math.random() * 100) + 1);
+	</script>
+
+</body>
+</html>
